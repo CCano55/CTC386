@@ -9,7 +9,7 @@ def fahr_to_cels():  # This part was taught from Lab 8
 
 # Option 6 function
 # This is new for lab 10
-def escape_room(name):
+def escape_room():
     print("----------------------------------")
     print(f"\nWelcome to the Escape Room, {name}!")
     print("You see three doors. Choose one (1, 2, or 3).")
@@ -126,7 +126,7 @@ elif choice == 5:
 
 # Option 6: Escape Room Game
 elif choice == 6:
-    escape_room(name)
+    escape_room()
 
 # If user enters something else
 else:
