@@ -10,37 +10,56 @@ def fahr_to_cels():  # This part was taught from Lab 8
 # Option 6 function
 # This is new for lab 10
 def escape_room(name):
-    print("\nWelcome to the Escape Room,", name + "!")
+    print("----------------------------------")
+    print(f"\nWelcome to the Escape Room, {name}!")
     print("You see three doors. Choose one (1, 2, or 3).")
 
     door = int(input("Enter a door number: "))
 
-
     if door == 1:
         print("\nDoor 1 opened...")
-        
         for i in range(5):
             print("AAAAAAAHHHH monsters!!!")
 
     elif door == 2:
-        print("\nDoor 2 is locked with a riddle!")
-        print("Riddle: What has to be broken before you can use it?")
-        answer = input("Enter your answer: ")
+        print("\nDoor 2 is locked!")
+        print("To escape, guess the correct 3-letter word.")
+        print("Hint: it's the answer to: What has to be broken before you can use it?")
 
-        
-        while answer.lower() != "egg":
-            print("Nope! Try again.")
-            answer = input("Enter your answer: ")
+        oldwords = []   # stores incorrect guesses
 
-        print("Correct! The door opens. You escaped! ")
+        while True:
+            newword = input("Enter a 3-letter word: ").lower()
+
+            # Must be exactly 3 letters
+            if len(newword) != 3:
+                print("That's not a 3-letter word.")
+                continue
+
+            # Correct answer
+            if newword == "egg":
+                print("\nCorrect! The door opens. You escaped!")
+                print("Incorrect guesses were:", oldwords)
+                break
+
+            # Repeated guess
+            if newword in oldwords:
+                print("You already tried that word.")
+            else:
+                print("Nice try, but that's not it.")
+                oldwords.append(newword)
+
+            # Nested loop: show all incorrect guesses so far
+            print("Incorrect guesses so far:")
+            for word in oldwords:
+                print("-", word)
 
     elif door == 3:
         print("\nDoor 3 opened...")
         print("You have escaped, nice work!")
 
     else:
-        print("\nThat door doesn't exist. The escape room kicks you out ")
-
+        print("\nThat door doesn't exist. The escape room kicks you out.")
 
 
 # 1. Ask the user to enter their name
@@ -53,7 +72,7 @@ print("2 - Display your name 15 times")
 print("3 - Enter a number and print a famous quote that many times")
 print("4 - Play a guessing game")
 print("5 - Convert Fahrenheit to Celsius")
-print("6 - Escape Room Game (Custom Option)")
+print("6 - Escape Room Game")
 print("--------------------")
 
 choice = int(input("Enter your choice (1, 2, 3, 4, 5, or 6): "))
@@ -105,7 +124,7 @@ elif choice == 4:
 elif choice == 5:
     fahr_to_cels()
 
-# Option 6: Custom option with function + loop + conditional + user input
+# Option 6: Escape Room Game
 elif choice == 6:
     escape_room(name)
 
